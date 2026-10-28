@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <!-- ステータスバーの扱いは起動時に決まる。白に固定して一覧の見出しをくっきり見せる（会話画面ではステータスバーの裏が白になる）。 -->
+  <meta name="theme-color" content="#ffffff">
+  <meta name="format-detection" content="telephone=no, email=no, address=no, date=no">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>Viewer</title>
+  <link rel="stylesheet" href="app.css?v=20261028143031">
+  <script type="module" src="js/main.js?v=20261028143031"></script>
+</head>
+<body ontouchstart="">
+  <!-- アイコン（SF Symbols の代わり） -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-face" viewBox="0 0 24 24"><path d="M18.6 10.2A8 8 0 1 1 13.5 5.4"/><circle cx="8.8" cy="12.2" r="1.05" class="f"/><circle cx="13.8" cy="11.4" r="1.05" class="f"/><path d="M8.6 15.6c1.7 1.6 4 1.5 5.6-.3"/><path class="f" d="M19 1.6l.95 2.15 2.15.95-2.15.95L19 7.8l-.95-2.15-2.15-.95 2.15-.95z"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.6" y="4.8" width="16.8" height="15.8" rx="3.6"/><path d="M8 2.9v3.6M16 2.9v3.6"/><text x="12" y="17.4" text-anchor="middle" font-size="8.4" font-weight="900" class="f" font-family="-apple-system, Helvetica, Arial, sans-serif">31</text></symbol>
+    <symbol id="i-square" viewBox="0 0 24 24"><path d="M8.2 4.6h7.6a3.6 3.6 0 0 1 3.6 3.6v11.2H8.2a3.6 3.6 0 0 1-3.6-3.6V8.2a3.6 3.6 0 0 1 3.6-3.6z"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 4.2v15.6M4.2 12h15.6"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.6" cy="10.6" r="6.4"/><path d="M15.4 15.4l4.6 4.6"/></symbol>
+    <symbol id="i-scan" viewBox="0 0 24 24"><path d="M4 8.6V6.6A2.6 2.6 0 0 1 6.6 4h2M15.4 4h2A2.6 2.6 0 0 1 20 6.6v2M20 15.4v2a2.6 2.6 0 0 1-2.6 2.6h-2M8.6 20h-2A2.6 2.6 0 0 1 4 17.4v-2M4.6 12h14.8"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M4.4 10.9 12 4.6l7.6 6.3v8.5a1.3 1.3 0 0 1-1.3 1.3h-3.8v-5.4h-5v5.4H5.7a1.3 1.3 0 0 1-1.3-1.3z"/></symbol>
+    <symbol id="i-talk" viewBox="0 0 24 24"><path class="f" d="M12 3.6c-5 0-9 3.3-9 7.4 0 2.5 1.5 4.7 3.8 6-.2 1.3-.9 2.5-1.9 3.4 2-.1 3.9-.9 5.3-2.1.6.1 1.2.1 1.8.1 5 0 9-3.3 9-7.4S17 3.6 12 3.6z"/><circle cx="8.2" cy="11" r="1.25" class="w"/><circle cx="12" cy="11" r="1.25" class="w"/><circle cx="15.8" cy="11" r="1.25" class="w"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5.3 8.3h13.4l-1.1 12.2H6.4z"/><path d="M9 8.3V7.1a3 3 0 0 1 6 0v1.2"/></symbol>
+    <symbol id="i-news" viewBox="0 0 24 24"><rect x="5" y="3.6" width="14" height="16.8" rx="3"/><path d="M8.6 9h6.8M8.6 12.4h6.8M8.6 15.8h6.8"/></symbol>
+    <symbol id="i-apps" viewBox="0 0 24 24"><rect x="3.8" y="3.8" width="6.6" height="6.6" rx="2"/><rect x="3.8" y="13.6" width="6.6" height="6.6" rx="2"/><rect x="13.6" y="13.6" width="6.6" height="6.6" rx="2"/><path d="M16.9 3.6v6.8M13.5 7h6.8"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M15.2 4.4 7.6 12l7.6 7.6"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M7.2 3.8h2.4l1.3 3.9-1.9 1.3a11.2 11.2 0 0 0 6 6l1.3-1.9 3.9 1.3v2.4a2 2 0 0 1-2.2 2A15.3 15.3 0 0 1 5.2 6a2 2 0 0 1 2-2.2z"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M5.8 6.15h12.4M5.8 12h12.4M5.8 17.85h12.4"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24"><path d="M3.8 8.6A1.8 1.8 0 0 1 5.6 6.8h2.2l1.6-2.2h5.2l1.6 2.2h2.2a1.8 1.8 0 0 1 1.8 1.8v9.2a1.8 1.8 0 0 1-1.8 1.8H5.6a1.8 1.8 0 0 1-1.8-1.8z"/><circle cx="12" cy="12.9" r="3.4"/></symbol>
+    <symbol id="i-photo" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="2.6"/><path d="M3.8 16.2 8.6 12l3.8 3.2 2.8-2.3 5 4"/><circle cx="15.6" cy="9.4" r="1.4"/></symbol>
+    <symbol id="i-smile" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><circle cx="9" cy="10.2" r="1" class="f"/><circle cx="15" cy="10.2" r="1" class="f"/><path d="M8.6 14.2c1.8 2.1 5 2.1 6.8 0"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3.6" width="6" height="11" rx="3"/><path d="M5.8 11.4a6.2 6.2 0 0 0 12.4 0M12 17.6v2.8"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path class="f" d="M15.6 2.9 21.1 8.4l-1.5.9-3.9 3.9.3 3.8-1.6 1.6-3.2-3.2-4.8 4.8-1-1 4.8-4.8-3.2-3.2 1.6-1.6 3.8.3 3.9-3.9z"/></symbol>
+    <symbol id="i-openchat" viewBox="-5 -5 10 10"><path d="M3.08 3.5V-2A1.42 1.42 0 0 0 1.66-3.42H-1.83A1.42 1.42 0 0 0-3.25-2V1.5A1.42 1.42 0 0 0-1.83 2.92H1.17" stroke-width="1.17" stroke-linecap="butt"/></symbol>
+    <symbol id="i-mute" viewBox="0 0 24 24"><path d="M4.6 9.4h3l4.2-3.6v12.4l-4.2-3.6h-3z"/><path d="M3.6 3.6l16.8 16.8"/></symbol>
+    <symbol id="i-tri" viewBox="0 0 24 24"><path class="f" d="M4.5 7.5h15L12 17z"/></symbol>
+    <!-- AI ボタン（単位は会話画面での CSS px、原点は輪の中心。目は同じ形を左右にずらして 2 回描く） -->
+    <defs><linearGradient id="ai-ring" gradientUnits="userSpaceOnUse" x1="6.32" y1="-7.14" x2="-6.16" y2="6.96"><stop offset="0" stop-color="#61b2fe"/><stop offset=".21" stop-color="#3083fd"/><stop offset=".72" stop-color="#a83deb"/><stop offset="1" stop-color="#e651a9"/></linearGradient><linearGradient id="ai-eye" gradientUnits="userSpaceOnUse" x1="1.15" y1="-1.15" x2="-1.15" y2="1.15"><stop offset="0" stop-color="#3e7cfb"/><stop offset="1" stop-color="#745cf3"/></linearGradient></defs>
+    <symbol id="i-ai" viewBox="-12 -12 24 24"><path fill="url(#ai-ring)" fill-rule="evenodd" stroke="none" d="M2.86 -9.63A.25 .25 0 0 0 2.53 -9.92L-5.59 -6.87C-8.2 -5.89 -9.41 -3.83 -9.41 0C-9.41 5.94 -6.49 7.62 0 7.62C6.49 7.62 9.41 5.94 9.41 0C9.41 -5.18 7.19 -7.12 2.3 -7.53ZM7.01 0C7.01 -4.05 5.86 -5.16 0 -5.16C-5.86 -5.16 -7.01 -4.05 -7.01 0C-7.01 4.05 -5.86 5.16 0 5.16C5.86 5.16 7.01 4.05 7.01 0Z"/><path fill="url(#ai-eye)" stroke="none" transform="translate(-2.48 0)" d="M1.19 0C1.19 -1.25 .82 -1.8 0 -1.8C-.82 -1.8 -1.19 -1.25 -1.19 0C-1.19 1.25 -.82 1.8 0 1.8C.82 1.8 1.19 1.25 1.19 0Z"/><path fill="url(#ai-eye)" stroke="none" transform="translate(2.48 0)" d="M1.19 0C1.19 -1.25 .82 -1.8 0 -1.8C-.82 -1.8 -1.19 -1.25 -1.19 0C-1.19 1.25 -.82 1.8 0 1.8C.82 1.8 1.19 1.25 1.19 0Z"/></symbol>
+  </svg>
+
+  <!-- 最初の 1 回だけ出る解錠画面（公開されている URL では、この画面しか見えない） -->
+  <main id="unlock" class="unlock" hidden>
+    <form id="unlock-form" class="unlock-card" autocomplete="off">
+      <h1>アクセスコード</h1>
+      <input id="unlock-input" type="password" inputmode="text" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" aria-label="アクセスコード">
+      <button type="submit" id="unlock-submit">開く</button>
+      <p id="unlock-error" class="unlock-error" hidden>コードが違います</p>
+    </form>
+  </main>
+
+  <div id="app" hidden>
+    <!-- トーク一覧 -->
+    <section id="list" class="screen list">
+      <header class="list-header">
+        <div class="header-row">
+          <div class="pill glass segmented">
+            <button class="seg seg-selected pressable" id="seg-talk" data-error>トーク<svg class="tri"><use href="#i-tri"/></svg></button>
+            <button class="seg pressable" data-error>友だち</button>
+          </div>
+          <div class="pill glass actions">
+            <button class="hicon pressable" data-error aria-label="きせかえ"><svg><use href="#i-face"/></svg><span class="dot"></span></button>
+            <button class="hicon pressable" data-error aria-label="カレンダー"><svg><use href="#i-cal"/></svg></button>
+            <button class="hicon pressable" data-error aria-label="VOOM"><svg><use href="#i-square"/></svg><span class="dot"></span></button>
+            <button class="hicon pressable plus" data-error aria-label="追加"><svg><use href="#i-plus"/></svg></button>
+          </div>
+        </div>
+        <div class="search-row">
+          <button class="search pressable" data-error><svg><use href="#i-search"/></svg><span>検索</span><svg class="scan"><use href="#i-scan"/></svg></button>
+          <button class="ai pressable" data-error aria-label="AI"><svg class="ai-icon"><use href="#i-ai"/></svg></button>
+        </div>
+      </header>
+      <div id="list-scroll" class="list-scroll">
+        <div id="rows"></div>
+      </div>
+      <nav class="tabbar glass">
+        <button class="tab pressable" data-error><span class="ticon"><svg><use href="#i-home"/></svg><span class="dot red"></span></span><span class="tlabel">ホーム</span></button>
+        <div class="tab selected"><span class="ticon"><svg><use href="#i-talk"/></svg></span><span class="tlabel">トーク</span></div>
+        <button class="tab pressable" data-error><span class="ticon"><svg><use href="#i-bag"/></svg><span class="dot red"></span></span><span class="tlabel">ショッピング</span></button>
+        <button class="tab pressable" data-error><span class="ticon"><svg><use href="#i-news"/></svg><span class="dot red"></span></span><span class="tlabel">ニュース</span></button>
+        <button class="tab pressable" data-error><span class="ticon"><svg><use href="#i-apps"/></svg><span class="dot red"></span></span><span class="tlabel">アプリ</span></button>
+      </nav>
+    </section>
+
+    <!-- 会話 -->
+    <section id="detail" class="screen detail" hidden>
+      <header class="detail-header">
+        <button class="back pressable" id="back" aria-label="戻る"><svg><use href="#i-chevron"/></svg></button>
+        <div class="detail-title" id="detail-title"></div>
+        <div class="dicons">
+          <button class="pressable" data-error aria-label="検索"><svg><use href="#i-search"/></svg></button>
+          <button class="pressable" data-error aria-label="通話"><svg><use href="#i-phone"/></svg></button>
+          <button class="pressable" data-error aria-label="カレンダー"><svg><use href="#i-cal"/></svg></button>
+          <button class="pressable" data-error aria-label="メニュー"><svg><use href="#i-menu"/></svg></button>
+        </div>
+      </header>
+      <div id="detail-scroll" class="detail-scroll">
+        <div id="messages"></div>
+      </div>
+      <footer class="input-area">
+        <div class="input-row">
+          <button class="iicon pressable plus" data-error aria-label="追加"><svg><use href="#i-plus"/></svg></button>
+          <button class="iicon pressable" data-error aria-label="カメラ"><svg><use href="#i-camera"/></svg></button>
+          <button class="iicon pressable" data-error aria-label="写真"><svg><use href="#i-photo"/></svg></button>
+          <button class="field pressable" data-error><span>Aa</span><svg><use href="#i-smile"/></svg></button>
+          <button class="iicon pressable" data-error aria-label="音声"><svg><use href="#i-mic"/></svg></button>
+        </div>
+        <div class="chips">
+          <button class="chip-ai pressable" data-error aria-label="AI"><svg class="ai-icon"><use href="#i-ai"/></svg></button>
+          <button class="chip pressable" data-error>日程調整<span class="dot"></span></button>
+          <button class="chip pressable" data-error>返信提案</button>
+          <button class="chip pressable" data-error>話題提案</button>
+          <button class="chip pressable" data-error>ムード分析</button>
+          <button class="chip pressable" data-error>豆知識</button>
+        </div>
+      </footer>
+    </section>
+  </div>
+
+  <!-- 共通エラー -->
+  <div id="alert" class="alert-backdrop" hidden>
+    <div class="alert" role="alertdialog" aria-labelledby="alert-title">
+      <div class="alert-title" id="alert-title">読み込みに失敗しました。</div>
+      <div class="alert-message">時間をおいてお試しください。</div>
+      <button class="alert-ok" id="alert-ok">OK</button>
+    </div>
+  </div>
+
+  <!-- 記録の画面（「トーク」を長押しで開く） -->
+  <section id="logs" class="logs" hidden>
+    <header class="logs-header">
+      <span class="logs-title">開いた記録</span>
+      <button id="logs-close" class="logs-button">閉じる</button>
+    </header>
+    <p id="logs-summary" class="logs-summary"></p>
+    <div class="logs-actions">
+      <button id="logs-share" class="logs-button primary">ファイルに書き出す</button>
+      <button id="logs-copy" class="logs-button">コピー</button>
+    </div>
+    <p id="logs-status" class="logs-status"></p>
+    <div id="logs-list" class="logs-list"></div>
+  </section>
+</body>
+</html>
