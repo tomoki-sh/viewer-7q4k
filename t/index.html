@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="タスク">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+  <meta name="format-detection" content="telephone=no, email=no, address=no, date=no">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>タスク</title>
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="stylesheet" href="app.css?v=20261111173928">
+  <script type="module" src="js/app.js?v=20261111173928"></script>
+</head>
+<body>
+  <main id="home" hidden>
+    <h1>タスク</h1>
+    <section class="card">
+      <p class="count"><span id="count">–</span><small>件</small></p>
+      <p class="caption">未完了</p>
+      <p class="updated" id="updated"></p>
+    </section>
+    <ul class="list">
+      <li><span>通知</span><span id="notify-state">確認中</span></li>
+      <li><span>同期</span><span id="sync-state">確認中</span></li>
+    </ul>
+    <button id="enable" class="primary" type="button" hidden>通知を有効にする</button>
+    <p id="note" class="note" hidden></p>
+  </main>
+  <main id="unlock" hidden>
+    <form id="unlock-form" autocomplete="off">
+      <h1>タスク</h1>
+      <input id="unlock-input" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="コード">
+      <button id="unlock-submit" class="primary" type="submit">開く</button>
+      <p id="unlock-error" class="error" hidden>コードが違います</p>
+    </form>
+  </main>
+</body>
+</html>
